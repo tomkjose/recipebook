@@ -15,7 +15,6 @@ export const fetchRecipeDetails = async (id) => {
 };
 
 export const userSignup = async (displayName, email, password) => {
-  console.log("displayName,email,password", displayName, email, password);
   const response = await axios.post(AUTH_API_URL.signup(), {
     displayName,
     email,
@@ -44,8 +43,6 @@ export const addToSaved = async (recipe, userEmail) => {
 };
 
 export const removeFromSaved = async (recipeId, userEmail) => {
-  console.log("recipeId", recipeId);
-  console.log("userEmail", userEmail);
   try {
     await firestore
       .collection("users")

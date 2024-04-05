@@ -27,6 +27,10 @@
   align-items: center;
   justify-content: center;
 }
+.recipe__title {
+  font-size: 2rem;
+  font-weight: 700;
+}
 
 .recipe__title:hover {
   color: #e1685a;
