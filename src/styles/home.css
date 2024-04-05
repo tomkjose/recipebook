@@ -1,6 +1,6 @@
 .home {
   width: 100%;
-  padding: 1.2rem;
+  padding: 5rem 1.6rem;
 }
 
 .home__list {
@@ -36,4 +36,22 @@
   display: flex;
   align-items: center;
   gap: 0.2rem;
+}
+
+@media only screen and (max-width: 992px) {
+  .recipe__card {
+    width: 30%;
+  }
+}
+
+@media only screen and (max-width: 729px) {
+  .recipe__card {
+    width: 48%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .recipe__card {
+    width: 100%;
+  }
 }

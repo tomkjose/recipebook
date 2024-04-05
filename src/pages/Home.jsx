@@ -57,7 +57,7 @@ function Home() {
                 </h3>
                 <div className="recipe__menu">
                   <div className="recipe__read__details">
-                    <span class="material-symbols-outlined">schedule</span>1
+                    <span className="material-symbols-outlined">schedule</span>1
                     Minute
                   </div>
                   <span
