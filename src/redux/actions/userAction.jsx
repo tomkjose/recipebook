@@ -16,7 +16,7 @@ export const fetchUserSuccess = (userInfo) => {
   };
 };
 
-export const fetchUserFaliure = (error) => {
+export const fetchUserFailure = (error) => {
   return {
     type: FETCH_USER_FALIURE,
     payload: error,

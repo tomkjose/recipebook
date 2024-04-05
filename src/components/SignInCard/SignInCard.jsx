@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { userSignin } from "../../api";
 import {
-  fetchUserFaliure,
+  fetchUserFailure,
   fetchUserRequest,
   fetchUserSuccess,
 } from "../../redux/actions/userAction";
@@ -23,7 +23,7 @@ function SignInCard() {
       dispatch(fetchUserSuccess(userDetails));
       navigate("/");
     } catch (error) {
-      dispatch(fetchUserFaliure(error.message));
+      dispatch(fetchUserFailure(error.message));
     }
   };
   const togglePasswordVisibility = () => {

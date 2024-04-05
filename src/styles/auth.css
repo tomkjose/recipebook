@@ -82,6 +82,12 @@
   background-color: #fd6754;
 }
 
+.error__message {
+  width: 100%;
+  color: red;
+  text-align: center;
+}
+
 @media only screen and (max-width: 1200px) {
   .auth__card {
     width: 60%;

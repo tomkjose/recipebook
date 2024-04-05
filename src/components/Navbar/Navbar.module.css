@@ -6,6 +6,7 @@
   margin: auto;
   padding: 1.2rem;
   position: fixed;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .nav__brand {
@@ -73,6 +74,7 @@
     bottom: 0;
     left: 0;
     padding-top: 0.6rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
 
   .compact__menu__item {
