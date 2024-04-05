@@ -1,0 +1,39 @@
+.home {
+  width: 100%;
+  padding: 1.2rem;
+}
+
+.home__list {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 1rem;
+}
+
+.recipe__card {
+  width: 20%;
+}
+
+.recipe__img {
+  width: 100%;
+
+  border-radius: 8px;
+}
+
+.recipe__title:hover {
+  color: #e1685a;
+  cursor: pointer;
+}
+
+.recipe__menu {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.4rem;
+}
+
+.recipe__read__details {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}

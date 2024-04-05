@@ -31,10 +31,6 @@ export const userSignin = async (email, password) => {
   return data;
 };
 
-export const userLogout = async () => {
-  localStorage.clear("user");
-};
-
 export const addToSaved = async (recipe, userEmail) => {
   try {
     await firestore

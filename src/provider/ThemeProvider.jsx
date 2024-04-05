@@ -6,7 +6,7 @@ export const ThemeProvider = ({ children }) => {
   const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
   const isDarkMode = darkModeMediaQuery.matches;
   const [currentTheme, setCurrentTheme] = useState(
-    JSON.parse(localStorage.getItem("themeMode")) || isDarkMode
+    JSON.parse(localStorage.getItem("themeMode"))
   );
   localStorage.setItem("themeMode", JSON.stringify(currentTheme));
   const changeTheme = () => {

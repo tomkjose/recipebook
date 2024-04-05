@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 function SignInCard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSignInSubmit = async (e) => {
@@ -25,27 +26,42 @@ function SignInCard() {
       dispatch(fetchUserFaliure(error.message));
     }
   };
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <form onSubmit={handleSignInSubmit}>
-      <div>
+    <form onSubmit={handleSignInSubmit} className="auth__form">
+      <div className="auth__container">
         <input
           type="email"
           name="email"
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail"
           required
+          className="auth__input"
         />
       </div>
-      <div>
+      <div className="auth__container">
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           name="password"
           onChange={(e) => setPassword(e.target.value)}
+          className="auth__input"
           placeholder="Password"
           required
         />
+        <span
+          className="material-symbols-outlined"
+          onClick={togglePasswordVisibility}
+          style={{ cursor: "pointer", color: "grey", paddingRight: "0.6rem" }}
+        >
+          {showPassword ? "visibility_off" : "visibility"}
+        </span>
       </div>
-      <button type="submit">Sign In</button>
+      <button type="submit" className="auth__btn">
+        Sign In
+      </button>
     </form>
   );
 }

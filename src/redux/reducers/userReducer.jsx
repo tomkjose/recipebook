@@ -2,11 +2,11 @@ import {
   FETCH_USER_REQUEST,
   FETCH_USER_SUCCESS,
   FETCH_USER_FALIURE,
-  LOGOUT_USER
+  LOGOUT_USER,
 } from "../actions/userAction";
 
 const initialValue = {
-  user: JSON.parse(localStorage.getItem("user")) || {},
+  user: JSON.parse(localStorage.getItem("user")) || null,
   loading: false,
   error: null,
 };
