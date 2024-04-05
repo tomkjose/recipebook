@@ -24,7 +24,10 @@ function Navbar() {
         color: currentTheme ? "white" : "black",
       }}
     >
-      <div className={styles.nav__brand}>RecipeBook.io</div>
+      <div className={styles.nav__brand}>
+        Recipe
+        <span style={{ color: "#e1685a", fontSize: "inherit" }}>Book.io</span>
+      </div>
       <ul className={styles.nav__list}>
         <Link to="/" className={styles.nav__link}>
           <li className={styles.nav__list__item}>Home</li>

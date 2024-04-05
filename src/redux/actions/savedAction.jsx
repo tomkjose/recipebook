@@ -1,5 +1,3 @@
-// actions.js
-
 import { firestore } from "../../firebase/firebase";
 
 export const FETCH_SAVED_REQUEST = "FETCH_SAVED_REQUEST";

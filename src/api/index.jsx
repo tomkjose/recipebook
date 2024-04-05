@@ -44,6 +44,8 @@ export const addToSaved = async (recipe, userEmail) => {
 };
 
 export const removeFromSaved = async (recipeId, userEmail) => {
+  console.log("recipeId", recipeId);
+  console.log("userEmail", userEmail);
   try {
     await firestore
       .collection("users")
