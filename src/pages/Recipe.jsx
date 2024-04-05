@@ -3,10 +3,13 @@ import { useParams } from "react-router-dom";
 import { fetchRecipeDetails } from "../api";
 import "../styles/recipe.css";
 import { useSelector } from "react-redux";
+import Loading from "../components/Loading/Loading";
+
 function Recipe() {
   const { id } = useParams();
   const user = useSelector((state) => state.user.user);
   const [recipe, setRecipe] = useState({});
+
   useEffect(() => {
     const fetchRecipe = async () => {
       const currentRecipe = await fetchRecipeDetails(id);
@@ -14,6 +17,15 @@ function Recipe() {
     };
     fetchRecipe();
   }, [id]);
+
+  if (!recipe || Object.keys(recipe).length === 0) {
+    return (
+      <div className="recipe__loading">
+        <Loading />
+      </div>
+    );
+  }
+
   return (
     <div className="recipe">
       <div className="recipe__image__container">

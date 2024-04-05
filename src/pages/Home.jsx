@@ -8,8 +8,10 @@ import { fetchAllRecipes, removeFromSaved } from "../api";
 import { useNavigate } from "react-router-dom";
 import { addToSaved } from "../api/index.jsx";
 import "../styles/home.css";
+import Loading from "../components/Loading/Loading.jsx";
 function Home() {
   const recipes = useSelector((state) => state.recipes.recipes);
+  const loading = useSelector((state) => state.recipes.loading);
   const user = useSelector((state) => state.user.user);
   const saved = useSelector((state) => state.saved.saved);
   const dispatch = useDispatch();
@@ -36,6 +38,14 @@ function Home() {
     };
     fetchRecipes();
   }, [dispatch]);
+
+  if (loading) {
+    return (
+      <div className="home__loading">
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="home">
