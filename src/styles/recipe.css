@@ -88,7 +88,39 @@
 }
 
 .recipe__image {
+  width: 100%;
   top: 70px;
   position: sticky;
   border-radius: 8px;
+}
+
+@media only screen and (max-width: 992px) {
+  .recipe {
+    flex-direction: column;
+  }
+
+  .recipe__image {
+    position: static;
+  }
+
+  .recipe__image__container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .recipe__details__container {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 729px) {
+  .recipe__image {
+    width: 100%;
+    position: static;
+  }
+}
+
+@media only screen and (max-width: 576px) {
 }
