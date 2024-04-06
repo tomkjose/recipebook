@@ -22,7 +22,9 @@ const savedReducer = (state = initialState, action) => {
     case REMOVE_SAVED:
       return {
         ...state,
-        saved: state.saved.filter((recipeId) => recipeId !== action.payload),
+        saved: state.saved.filter(
+          (recipeId) => recipeId.uniqueId !== action.payload
+        ),
       };
     case FETCH_SAVED_REQUEST:
       return {
