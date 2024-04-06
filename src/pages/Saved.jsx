@@ -38,8 +38,8 @@ function Saved() {
 
       {savedRecipes && savedRecipes.length > 0 ? (
         <div className="saved__recipe__list">
-          {savedRecipes.map((recipe) => (
-            <div key={recipe.id} className="saved__recipe__item">
+          {savedRecipes.map((recipe, index) => (
+            <div key={index} className="saved__recipe__item">
               <img
                 src={recipe.image}
                 alt="recipe__img"

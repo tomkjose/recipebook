@@ -35,7 +35,8 @@ export const userSignin = async (email, password) => {
 export const addToSaved = async (recipe, userId) => {
   try {
     const savedCollection = collection(db, `users/${userId}/recipes`);
-    await addDoc(savedCollection, recipe);
+    const docRef = await addDoc(savedCollection, recipe);
+    return docRef.id;
   } catch (error) {
     console.error("Error adding recipe:", error);
   }
@@ -43,6 +44,8 @@ export const addToSaved = async (recipe, userId) => {
 
 export const removeFromSaved = async (recipeId, userId) => {
   try {
+    console.log("recipeId", recipeId);
+    console.log("userId", userId);
     const savedCollection = collection(db, `users/${userId}/recipes`);
     console.log("Saved Collection:", savedCollection);
 

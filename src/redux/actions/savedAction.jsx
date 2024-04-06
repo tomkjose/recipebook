@@ -20,7 +20,7 @@ export const fetchSavedRecipes = (userId) => {
       querySnapshot.forEach((doc) => {
         saved.push({ uniqueId: doc.id, ...doc.data() });
       });
-
+      console.log("saved", saved);
       dispatch({ type: FETCH_SAVED_SUCCESS, payload: saved });
     } catch (error) {
       dispatch({ type: FETCH_SAVED_FAILURE, payload: error.message });
@@ -30,10 +30,11 @@ export const fetchSavedRecipes = (userId) => {
 
 export const addSaved = (recipe, userId) => async (dispatch) => {
   try {
-    await addToSaved(recipe, userId);
+    const uniqueId = await addToSaved(recipe, userId);
+    console.log("uniqueId", uniqueId);
     dispatch({
       type: ADD_SAVED,
-      payload: recipe,
+      payload: { uniqueId, ...recipe },
     });
   } catch (error) {
     console.error("Error adding to saved:", error);
@@ -41,6 +42,7 @@ export const addSaved = (recipe, userId) => async (dispatch) => {
 };
 
 export const removeSaved = (recipeId, userId) => async (dispatch) => {
+  console.log("recipeId", recipeId);
   try {
     await removeFromSaved(recipeId, userId);
     dispatch({

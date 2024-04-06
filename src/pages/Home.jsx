@@ -4,12 +4,12 @@ import {
   fetchRecipesRequest,
   fetchRecipesSuccess,
 } from "../redux/actions/recipesAction";
-import { fetchAllRecipes, removeFromSaved } from "../api";
+import { fetchAllRecipes } from "../api";
 import { useNavigate } from "react-router-dom";
-import { addToSaved } from "../api/index.jsx";
+import { addSaved, removeSaved } from "../redux/actions/savedAction";
 import "../styles/home.css";
-import Loading from "../components/Loading/Loading.jsx";
-import { addSaved, removeSaved } from "../redux/actions/savedAction.jsx";
+import Loading from "../components/Loading/Loading";
+
 function Home() {
   const recipes = useSelector((state) => state.recipes.recipes);
   const loading = useSelector((state) => state.recipes.loading);
@@ -22,8 +22,9 @@ function Home() {
     dispatch(addSaved(recipe, userId));
   };
 
-  const handleRemoveFromSaved = (id, userId) => {
-    dispatch(removeSaved(id, userId));
+  const handleRemoveFromSaved = (recipeId, userId) => {
+    console.log("recipeId", recipeId);
+    dispatch(removeSaved(recipeId, userId));
   };
 
   useEffect(() => {
@@ -31,7 +32,6 @@ function Home() {
       dispatch(fetchRecipesRequest());
       try {
         const allRecipes = await fetchAllRecipes();
-        // console.log("allRecipes", allRecipes);
         dispatch(fetchRecipesSuccess(allRecipes));
       } catch (error) {
         dispatch(fetchRecipesSuccess(error.message));
@@ -50,9 +50,15 @@ function Home() {
 
   return (
     <div className="home">
-      {recipes ? (
+      {recipes && (
         <div className="home__list">
           {recipes.map((recipe) => {
+            const isSaved = saved.some(
+              (savedRecipe) => savedRecipe.id === recipe.id
+            );
+            const savedRecipe = saved.find(
+              (savedRecipe) => savedRecipe.id === recipe.id
+            );
             return (
               <div key={recipe.id} className="recipe__card">
                 <img
@@ -71,20 +77,33 @@ function Home() {
                     <span className="material-symbols-outlined">schedule</span>1
                     Minute
                   </div>
-                  <span
-                    className="material-symbols-outlined"
-                    onClick={() => handleAddToSave(recipe, user.localId)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    bookmark_add
-                  </span>
+                  {isSaved ? (
+                    <span
+                      className="material-symbols-outlined"
+                      onClick={() =>
+                        handleRemoveFromSaved(
+                          savedRecipe.uniqueId,
+                          user.localId
+                        )
+                      }
+                      style={{ cursor: "pointer" }}
+                    >
+                      bookmark_remove
+                    </span>
+                  ) : (
+                    <span
+                      className="material-symbols-outlined"
+                      onClick={() => handleAddToSave(recipe, user.localId)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      bookmark_add
+                    </span>
+                  )}
                 </div>
               </div>
             );
           })}
         </div>
-      ) : (
-        ""
       )}
     </div>
   );
