@@ -4,12 +4,13 @@ import "../styles/auth.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Footer from "../components/Footer/Footer";
+
 function Signin() {
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user !== null) {
+    if (user && Object.keys(user).length !== 0) {
       navigate("/");
     }
   }, [navigate, user]);
@@ -27,6 +28,7 @@ function Signin() {
           </Link>
         </p>
       </div>
+      <Footer />
     </div>
   );
 }

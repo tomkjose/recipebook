@@ -4,26 +4,30 @@ import { fetchSavedRecipes } from "../redux/actions/savedAction";
 import { useNavigate } from "react-router-dom";
 import "../styles/saved.css";
 import { removeFromSaved } from "../api";
+import Loading from "../components/Loading/Loading";
 
 function Saved() {
   const dispatch = useDispatch();
   const savedRecipes = useSelector((state) => state.saved.saved);
+  const loading = useSelector((state) => state.saved.loading);
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
-
-  console.log("savedRecipes", savedRecipes.length);
 
   useEffect(() => {
     if (user && user.email) {
       dispatch(fetchSavedRecipes(user.email));
+    } else {
+      navigate("/signin");
     }
-  }, [dispatch, user]);
-
-  useEffect(() => {
-    if (!user) {
-      navigate("/");
-    }
-  }, [navigate, user]);
+  }, [dispatch, navigate, user]);
+  console.log("loading", loading);
+  if (loading) {
+    return (
+      <div className="saved__loading">
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="saved">
