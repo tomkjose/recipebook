@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Home, Recipe, Saved, Fof, Signup, Signin } from "../../pages/index";
 import Navbar from "../Navbar/Navbar";
 import { useChangeTheme } from "../../provider/ThemeProvider";
