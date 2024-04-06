@@ -1,5 +1,7 @@
 .saved {
   padding: 5rem 1.6rem;
+  width: 100%;
+  height: 100vh;
 }
 
 .saved__recipe__heading {

@@ -85,12 +85,13 @@ function Navbar() {
         </Link>
 
         {user && Object.keys(user).length > 0 && (
-          <Link to="/" className={styles.nav__link}>
-            <div className={styles.compact__menu__item}>
-              <span className="material-symbols-outlined">bookmark_add</span>
-              Saved
-            </div>
-          </Link>
+          <div
+            className={styles.compact__menu__item}
+            onClick={() => navigate("/saved")}
+          >
+            <span className="material-symbols-outlined">bookmark_add</span>
+            Saved
+          </div>
         )}
         {user && Object.keys(user).length > 0 ? (
           <div className={styles.compact__menu__item} onClick={handleLogout}>

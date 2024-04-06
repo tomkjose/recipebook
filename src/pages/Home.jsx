@@ -30,7 +30,7 @@ function Home() {
       dispatch(fetchRecipesRequest());
       try {
         const allRecipes = await fetchAllRecipes();
-        console.log("allRecipes", allRecipes);
+        // console.log("allRecipes", allRecipes);
         dispatch(fetchRecipesSuccess(allRecipes));
       } catch (error) {
         dispatch(fetchRecipesSuccess(error.message));
