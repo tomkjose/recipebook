@@ -1,6 +1,8 @@
 import axios from "axios";
 import { AUTH_API_URL, RECIPE_API_URL } from "../utils/constants";
-import { firestore } from "../firebase/firebase";
+
+import { db } from "../firebase/firebase";
+import { collection, addDoc, deleteDoc, doc } from "firebase/firestore";
 
 export const fetchAllRecipes = async () => {
   const response = await axios.get(RECIPE_API_URL.allRecipes());
@@ -30,27 +32,26 @@ export const userSignin = async (email, password) => {
   return data;
 };
 
-export const addToSaved = async (recipe, userEmail) => {
+export const addToSaved = async (recipe, userId) => {
   try {
-    await firestore
-      .collection("users")
-      .doc(userEmail)
-      .collection("recipes")
-      .add(recipe);
+    const savedCollection = collection(db, `users/${userId}/recipes`);
+    await addDoc(savedCollection, recipe);
   } catch (error) {
     console.error("Error adding recipe:", error);
   }
 };
 
-export const removeFromSaved = async (recipeId, userEmail) => {
+export const removeFromSaved = async (recipeId, userId) => {
   try {
-    await firestore
-      .collection("users")
-      .doc(userEmail)
-      .collection("recipes")
-      .doc(recipeId)
-      .delete();
+    const savedCollection = collection(db, `users/${userId}/recipes`);
+    console.log("Saved Collection:", savedCollection);
+
+    const postDoc = doc(savedCollection, recipeId);
+    console.log("Document Reference:", postDoc);
+
+    await deleteDoc(postDoc);
+    console.log("Recipe removed successfully!");
   } catch (error) {
-    console.error("Error removing recipe:", error);
+    console.error("Error removing from Saved:", error);
   }
 };

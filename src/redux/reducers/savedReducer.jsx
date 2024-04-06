@@ -1,4 +1,6 @@
 import {
+  ADD_SAVED,
+  REMOVE_SAVED,
   FETCH_SAVED_REQUEST,
   FETCH_SAVED_SUCCESS,
   FETCH_SAVED_FAILURE,
@@ -12,6 +14,16 @@ const initialState = {
 
 const savedReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_SAVED:
+      return {
+        ...state,
+        saved: [...state.saved, action.payload],
+      };
+    case REMOVE_SAVED:
+      return {
+        ...state,
+        saved: state.saved.filter((recipeId) => recipeId !== action.payload),
+      };
     case FETCH_SAVED_REQUEST:
       return {
         ...state,

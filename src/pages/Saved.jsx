@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSavedRecipes } from "../redux/actions/savedAction";
+import { fetchSavedRecipes, removeSaved } from "../redux/actions/savedAction";
 import { useNavigate } from "react-router-dom";
 import "../styles/saved.css";
-import { removeFromSaved } from "../api";
 import Loading from "../components/Loading/Loading";
 
 function Saved() {
@@ -15,12 +14,16 @@ function Saved() {
 
   useEffect(() => {
     if (user && user.email) {
-      dispatch(fetchSavedRecipes(user.email));
+      dispatch(fetchSavedRecipes(user.localId));
     } else {
       navigate("/signin");
     }
   }, [dispatch, navigate, user]);
-  console.log("loading", loading);
+
+  const handleRemoveFromSaved = (recipeId, userId) => {
+    dispatch(removeSaved(recipeId, userId));
+  };
+
   if (loading) {
     return (
       <div className="saved__loading">
@@ -51,7 +54,10 @@ function Saved() {
                 </h3>
                 <span
                   className="material-symbols-outlined"
-                  onClick={() => removeFromSaved(recipe.id, user && user.email)}
+                  onClick={() =>
+                    handleRemoveFromSaved(recipe.uniqueId, user.localId)
+                  }
+                  style={{ cursor: "pointer" }}
                 >
                   bookmark_remove
                 </span>

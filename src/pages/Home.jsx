@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { addToSaved } from "../api/index.jsx";
 import "../styles/home.css";
 import Loading from "../components/Loading/Loading.jsx";
+import { addSaved, removeSaved } from "../redux/actions/savedAction.jsx";
 function Home() {
   const recipes = useSelector((state) => state.recipes.recipes);
   const loading = useSelector((state) => state.recipes.loading);
@@ -17,12 +18,12 @@ function Home() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleAddToSave = (recipe, userEmail) => {
-    addToSaved(recipe, userEmail);
+  const handleAddToSave = (recipe, userId) => {
+    dispatch(addSaved(recipe, userId));
   };
 
-  const handleRemoveFromSaved = (id, userEmail) => {
-    removeFromSaved(id, userEmail);
+  const handleRemoveFromSaved = (id, userId) => {
+    dispatch(removeSaved(id, userId));
   };
 
   useEffect(() => {
@@ -72,7 +73,7 @@ function Home() {
                   </div>
                   <span
                     className="material-symbols-outlined"
-                    onClick={() => handleAddToSave(recipe, user.email)}
+                    onClick={() => handleAddToSave(recipe, user.localId)}
                     style={{ cursor: "pointer" }}
                   >
                     bookmark_add

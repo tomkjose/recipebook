@@ -61,6 +61,10 @@
 }
 
 @media only screen and (max-width: 576px) {
+  .saved {
+    height: 100%;
+  }
+
   .saved__recipe__item {
     width: 100%;
   }
