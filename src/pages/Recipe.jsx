@@ -33,7 +33,7 @@ function Recipe() {
       </div>
       <div className="recipe__details__container">
         <div className="recipe__title__container">
-          <h1 className="recipe__title">{recipe.title}</h1>
+          <h1 className="recipe__title__heading">{recipe.title}</h1>
           {user ? (
             <button className="recipe__button">
               <span

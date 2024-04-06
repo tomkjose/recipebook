@@ -3,6 +3,7 @@ import SignInCard from "../components/SignInCard/SignInCard";
 import "../styles/auth.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Footer from "../components/Footer/Footer";
 function Signin() {
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();

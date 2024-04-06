@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home, Recipe, Saved, Fof, Signup, Signin } from "../../pages/index";
 import Navbar from "../Navbar/Navbar";
 import { useChangeTheme } from "../../provider/ThemeProvider";
+import Footer from "../Footer/Footer";
 
 function App() {
   const { currentTheme } = useChangeTheme();
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/signin" element={<Signin />}></Route>
           <Route path="*" element={<Fof />}></Route>
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
