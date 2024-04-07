@@ -1,8 +1,7 @@
 .home {
   width: 100%;
   padding: 5rem 1.6rem;
-
-  height: 100vh;
+  height: 100%;
   overflow-y: auto;
 }
 
@@ -16,6 +15,7 @@
 
 .no__recipes {
   text-align: center;
+  height: 100vh;
 }
 
 .recipe__card {
