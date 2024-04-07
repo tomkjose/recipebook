@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { fetchRecipeDetails } from "../api";
 import "../styles/recipe.css";
 import Loading from "../components/Loading/Loading";
+import { capitalizeText } from "../utils/helper";
 
 function Recipe() {
   const { id } = useParams();
@@ -23,6 +24,7 @@ function Recipe() {
       </div>
     );
   }
+
   return (
     <div className="recipe">
       <div className="recipe__image__container">
@@ -32,6 +34,16 @@ function Recipe() {
         <div className="recipe__title__container">
           <h1 className="recipe__title__heading">{recipe.title}</h1>
         </div>
+        <div className="recipe__breadcrumbs">
+          <span>
+            <Link to="/" className="recipe__breadcrumbs__link">
+              {" "}
+              Home{" "}
+            </Link>
+          </span>
+          <span class="material-symbols-outlined">keyboard_arrow_right</span>
+          <span>{recipe.title}</span>
+        </div>
         <div className="recipe__count__details">
           <div className="recipe__count">
             <div className="recipe__value">
@@ -39,14 +51,19 @@ function Recipe() {
             </div>
             <div className="recipe__caption">Ingredients</div>
           </div>
-          <div className="recipe__count">
-            <div className="recipe__value">{recipe.cookingMinutes}</div>
+          <div className="recipe__count cooking__time">
+            <div className="recipe__value">{recipe.readyInMinutes}</div>
             <div className="recipe__caption">Minutes</div>
           </div>
           <div className="recipe__count">
             <div className="recipe__value">{recipe.healthScore}</div>
             <div className="recipe__caption">Health Score</div>
           </div>
+        </div>
+        <div className="recipe__type">
+          <span>{recipe.vegetarian ? "Vegetarian" : "Non Vegetarian"}</span>
+          <span>{capitalizeText(recipe.cuisines[0])}</span>
+          <span>{capitalizeText(recipe.dishTypes[0])}</span>
         </div>
         <div>
           <div className="recipe__subtitle">
@@ -69,7 +86,10 @@ function Recipe() {
             Instructions
           </div>
         </div>
-        <div className="recipe__instructions">{recipe.instructions}</div>
+        <div
+          className="recipe__instructions"
+          dangerouslySetInnerHTML={{ __html: recipe.instructions }}
+        />
       </div>
     </div>
   );

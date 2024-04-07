@@ -37,8 +37,27 @@
 
 .recipe__count__details {
   display: flex;
-  justify-content: space-between;
-  padding: 1.2rem 0;
+  justify-content: space-around;
+  padding: 2rem 0;
+}
+
+.recipe__type {
+  display: flex;
+  margin: 1rem 0;
+}
+
+.recipe__type span {
+  border: 1px solid #b7b7b7;
+  padding: 0.4rem;
+  margin: 0 0.4rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.cooking__time {
+  border-left: 1px solid #b7b7b7;
+  border-right: 1px solid #b7b7b7;
+  padding: 0 5rem;
 }
 
 .recipe__count {
@@ -96,6 +115,25 @@
 .recipe__title__heading {
   font-size: 2rem;
   font-weight: 700;
+}
+
+.recipe__breadcrumbs {
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.recipe__breadcrumbs span {
+  font-size: 0.8rem;
+}
+
+.recipe__breadcrumbs__link {
+  color: inherit;
+  font-size: 0.8rem;
+}
+
+.recipe__breadcrumbs__link:hover {
+  color: #e1685a;
 }
 
 @media only screen and (max-width: 992px) {
