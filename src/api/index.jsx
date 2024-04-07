@@ -44,16 +44,11 @@ export const addToSaved = async (recipe, userId) => {
 
 export const removeFromSaved = async (recipeId, userId) => {
   try {
-    console.log("recipeId", recipeId);
-    console.log("userId", userId);
     const savedCollection = collection(db, `users/${userId}/recipes`);
-    console.log("Saved Collection:", savedCollection);
 
     const postDoc = doc(savedCollection, recipeId);
-    console.log("Document Reference:", postDoc);
 
     await deleteDoc(postDoc);
-    console.log("Recipe removed successfully!");
   } catch (error) {
     console.error("Error removing from Saved:", error);
   }

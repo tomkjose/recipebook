@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchRecipeDetails } from "../api";
 import "../styles/recipe.css";
-import { useSelector } from "react-redux";
 import Loading from "../components/Loading/Loading";
 
 function Recipe() {
   const { id } = useParams();
-  const user = useSelector((state) => state.user.user);
   const [recipe, setRecipe] = useState({});
 
   useEffect(() => {
@@ -25,7 +23,6 @@ function Recipe() {
       </div>
     );
   }
-
   return (
     <div className="recipe">
       <div className="recipe__image__container">
@@ -34,19 +31,6 @@ function Recipe() {
       <div className="recipe__details__container">
         <div className="recipe__title__container">
           <h1 className="recipe__title__heading">{recipe.title}</h1>
-          {user ? (
-            <button className="recipe__button">
-              <span
-                className="material-symbols-outlined"
-                style={{ cursor: "pointer" }}
-              >
-                bookmark_add
-              </span>{" "}
-              Save
-            </button>
-          ) : (
-            ""
-          )}
         </div>
         <div className="recipe__count__details">
           <div className="recipe__count">

@@ -31,7 +31,7 @@ export const fetchSavedRecipes = (userId) => {
 export const addSaved = (recipe, userId) => async (dispatch) => {
   try {
     const uniqueId = await addToSaved(recipe, userId);
-    console.log("uniqueId", uniqueId);
+    // console.log("uniqueId", uniqueId);
     dispatch({
       type: ADD_SAVED,
       payload: { uniqueId, ...recipe },
@@ -42,7 +42,7 @@ export const addSaved = (recipe, userId) => async (dispatch) => {
 };
 
 export const removeSaved = (recipeId, userId) => async (dispatch) => {
-  console.log("recipeId", recipeId);
+  // console.log("recipeId", recipeId);
   try {
     await removeFromSaved(recipeId, userId);
     dispatch({

@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/fof.css";
 import { Link } from "react-router-dom";
-import Footer from "../components/Footer/Footer";
+
 function Fof() {
   return (
     <div className="fof">

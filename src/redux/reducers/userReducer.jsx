@@ -38,7 +38,7 @@ const userReducer = (state = initialValue, action) => {
       localStorage.removeItem("user");
       return {
         ...state,
-        user: {},
+        user: null,
         loading: false,
         error: null,
       };

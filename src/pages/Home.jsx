@@ -23,7 +23,7 @@ function Home() {
   };
 
   const handleRemoveFromSaved = (recipeId, userId) => {
-    console.log("recipeId", recipeId);
+    // console.log("recipeId", recipeId);
     dispatch(removeSaved(recipeId, userId));
   };
 
@@ -72,34 +72,38 @@ function Home() {
                 >
                   {recipe.title}
                 </h3>
-                <div className="recipe__menu">
-                  <div className="recipe__read__details">
-                    <span className="material-symbols-outlined">schedule</span>1
-                    Minute
+                {user && (
+                  <div className="recipe__menu">
+                    <div className="recipe__read__details">
+                      <span className="material-symbols-outlined">
+                        schedule
+                      </span>
+                      1 Minute
+                    </div>
+                    {user && isSaved ? (
+                      <span
+                        className="material-symbols-outlined"
+                        onClick={() =>
+                          handleRemoveFromSaved(
+                            savedRecipe.uniqueId,
+                            user.localId
+                          )
+                        }
+                        style={{ cursor: "pointer" }}
+                      >
+                        bookmark_remove
+                      </span>
+                    ) : (
+                      <span
+                        className="material-symbols-outlined"
+                        onClick={() => handleAddToSave(recipe, user.localId)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        bookmark_add
+                      </span>
+                    )}
                   </div>
-                  {isSaved ? (
-                    <span
-                      className="material-symbols-outlined"
-                      onClick={() =>
-                        handleRemoveFromSaved(
-                          savedRecipe.uniqueId,
-                          user.localId
-                        )
-                      }
-                      style={{ cursor: "pointer" }}
-                    >
-                      bookmark_remove
-                    </span>
-                  ) : (
-                    <span
-                      className="material-symbols-outlined"
-                      onClick={() => handleAddToSave(recipe, user.localId)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      bookmark_add
-                    </span>
-                  )}
-                </div>
+                )}
               </div>
             );
           })}
