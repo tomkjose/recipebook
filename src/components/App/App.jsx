@@ -3,7 +3,7 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import { useChangeTheme } from "../../provider/ThemeProvider";
 import Footer from "../Footer/Footer";
-import Loading from "../Loading/Loading";
+import LoadingPage from "../../pages/LoadingPage";
 
 const Home = lazy(() => import("../../pages/Home"));
 const Recipe = lazy(() => import("../../pages/Recipe"));
@@ -19,7 +19,7 @@ function App() {
     <div className={`App ${currentTheme ? "dark" : "Light"}`}>
       <Router>
         <Navbar />
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<LoadingPage />}>
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/recipe/:id" element={<Recipe />} />
