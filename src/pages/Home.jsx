@@ -60,7 +60,9 @@ function Home() {
   return (
     <div className="home">
       <Searchbox handleSearch={handleSearch} />
-      {filteredRecipes && (
+      {filteredRecipes.length === 0 ? (
+        <div className="no__recipes">No recipes found</div>
+      ) : (
         <div className="home__list">
           {filteredRecipes.map((recipe) => {
             const isSaved = saved.some(

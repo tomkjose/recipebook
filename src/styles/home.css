@@ -1,6 +1,9 @@
 .home {
   width: 100%;
   padding: 5rem 1.6rem;
+
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .home__list {
@@ -9,6 +12,10 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 1rem;
+}
+
+.no__recipes {
+  text-align: center;
 }
 
 .recipe__card {
@@ -49,11 +56,20 @@
   .recipe__card {
     width: 30%;
   }
+  .home {
+    height: 100vh;
+    overflow-y: auto;
+  }
 }
 
 @media only screen and (max-width: 729px) {
   .recipe__card {
     width: 48%;
+  }
+
+  .home {
+    height: 100vh;
+    overflow-y: auto;
   }
 }
 
