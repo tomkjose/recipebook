@@ -77,4 +77,9 @@
   .recipe__card {
     width: 100%;
   }
+
+  .recipe__title {
+    font-size: 1.4rem;
+    padding: 0.6rem;
+  }
 }
