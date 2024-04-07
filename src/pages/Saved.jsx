@@ -66,7 +66,7 @@ function Saved() {
           ))}
         </div>
       ) : (
-        <div className="saved__loading">No Recipes Saved</div>
+        <div className="no__saved">No Recipes Saved</div>
       )}
     </div>
   );

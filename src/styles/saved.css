@@ -2,6 +2,7 @@
   padding: 5rem 1.6rem;
   width: 100%;
   height: 100vh;
+  overflow-y: auto;
 }
 
 .saved__recipe__heading {
@@ -44,7 +45,14 @@
   width: 100%;
   height: 100vh;
   display: flex;
+  justify-content: center;
   align-items: center;
+}
+
+.no__saved {
+  width: 100%;
+  height: 100vh;
+  display: flex;
   justify-content: center;
 }
 
@@ -62,7 +70,8 @@
 
 @media only screen and (max-width: 576px) {
   .saved {
-    height: 100%;
+    height: 100vh;
+    overflow-y: auto;
   }
 
   .saved__recipe__item {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchRecipesRequest,
@@ -9,8 +9,10 @@ import { useNavigate } from "react-router-dom";
 import { addSaved, removeSaved } from "../redux/actions/savedAction";
 import "../styles/home.css";
 import Loading from "../components/Loading/Loading";
+import Searchbox from "../components/Searchbox/Searchbox";
 
 function Home() {
+  const [searchQuery, setSearchQuery] = useState("");
   const recipes = useSelector((state) => state.recipes.recipes);
   const loading = useSelector((state) => state.recipes.loading);
   const user = useSelector((state) => state.user.user);
@@ -23,7 +25,6 @@ function Home() {
   };
 
   const handleRemoveFromSaved = (recipeId, userId) => {
-    // console.log("recipeId", recipeId);
     dispatch(removeSaved(recipeId, userId));
   };
 
@@ -40,6 +41,14 @@ function Home() {
     fetchRecipes();
   }, [dispatch]);
 
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
+  const filteredRecipes = recipes.filter((recipe) =>
+    recipe.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   if (loading) {
     return (
       <div className="home__loading">
@@ -50,9 +59,10 @@ function Home() {
 
   return (
     <div className="home">
-      {recipes && (
+      <Searchbox handleSearch={handleSearch} />
+      {filteredRecipes && (
         <div className="home__list">
-          {recipes.map((recipe) => {
+          {filteredRecipes.map((recipe) => {
             const isSaved = saved.some(
               (savedRecipe) => savedRecipe.id === recipe.id
             );
